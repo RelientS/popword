@@ -6,7 +6,7 @@
      <el-button type="info" class="button3" circle><i class="el-icon-share"></i></el-button>
      <div v-show="show1" class="picker">
        <el-button type="info" class="button4" circle @click="change1"><i class="el-icon-close"></i></el-button>
-       <mt-picker :slots="slots" class="mt_picker" :itemHeight="height"></mt-picker>
+       <mt-picker :slots="slots" @change="onValuesChange" class="mt_picker" :itemHeight="height"></mt-picker>
      </div>
      <div v-show="show2" class="menu">
        <el-button type="info" class="button4" circle @click="change2"><i class="el-icon-close"></i></el-button>
@@ -26,17 +26,22 @@
          <img :src="list[3].src">
        </div>
      </div>
-     <router-view></router-view>
+     <Word2016 :num="num"></Word2016>
     </el-main>
   </el-container>
 </template>
 
 <script>
+import Word2016 from '@/components/Word2016'
 export default {
   name: 'App',
+  components: {
+    Word2016
+  },
   methods: {
-    onValuesChange:function(picker, values) {
+    onValuesChange(picker, values) {
      //这里用来写根据picker的值切换router
+     this.num = parseInt(picker.getValues())-2016
     },
     change1:function(){
       this.show1===true?this.show1=false:this.show1=true;
@@ -47,6 +52,7 @@ export default {
   },
   data() {
     return {
+      num:0,
       show1:false,
       show2:false,
       height:300,
@@ -78,7 +84,7 @@ export default {
     left: 20px;
     z-index: 99;
     font-size: 50px;
-    @media screen and (max-width: 1024px){
+    @media screen and (max-width: 600px){
       height: 45px;
       width: 45px;
       font-size: 20px;
@@ -92,7 +98,7 @@ export default {
     right: 20px;
     z-index: 99;
     font-size: 50px;
-    @media screen and (max-width: 1024px){
+    @media screen and (max-width: 600px){
       height: 45px;
       width: 45px;
       font-size: 20px;
@@ -106,7 +112,7 @@ export default {
     right: 20px;
     z-index: 99;
     font-size: 50px;
-    @media screen and (max-width: 1024px){
+    @media screen and (max-width: 600px){
       height: 45px;
       width: 45px;
       font-size: 20px;
@@ -121,7 +127,7 @@ export default {
     right: 20px;
     z-index: 100;
     font-size: 50px;
-    @media screen and (max-width: 1024px){
+    @media screen and (max-width: 600px){
       height: 45px;
       width: 45px;
       font-size: 20px;
@@ -154,7 +160,7 @@ export default {
     width: 50%;
     height: 50%;
     position: relative;
-    @media screen and (max-width: 1024px){
+    @media screen and (max-width: 600px){
       width: 100%;
       height: 34%;
     }
@@ -165,7 +171,7 @@ export default {
      position: absolute;
      top:35%;
      left: 10%;
-     @media screen and (max-width: 1024px){
+     @media screen and (max-width: 600px){
        font-size: 270%;
      }
     }
@@ -179,7 +185,7 @@ export default {
     height: 50%;
     display: flex;
     flex-wrap: wrap;
-    @media screen and (max-width: 1024px){
+    @media screen and (max-width: 600px){
       width: 100%;
       height: 33%;
     }
@@ -193,7 +199,7 @@ export default {
     height: 50%;
     display: flex;
     flex-wrap: wrap;
-    @media screen and (max-width: 1024px){
+    @media screen and (max-width: 600px){
       width: 100%;
       height: 33%;
     }
